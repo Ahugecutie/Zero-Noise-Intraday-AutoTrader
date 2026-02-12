@@ -60,6 +60,7 @@
       margin-bottom: 12px;
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       gap: 10px;
     }
     .card-title .rank {
@@ -131,6 +132,7 @@
       border-collapse: collapse;
       margin: 12px 0 20px;
       font-size: 0.9em;
+      table-layout: auto;
     }
     thead th {
       background: #1a2734;
@@ -224,8 +226,23 @@
       body { padding: 12px; }
       h1 { font-size: 1.5em; }
       h2 { font-size: 1.2em; }
-      .metric-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
-      table { font-size: 0.8em; }
+      .card { padding: 14px 12px; border-radius: 10px; }
+      .card-title { font-size: 1em; gap: 6px; }
+      .card-title .rank, .card-title .score { font-size: 0.75em; padding: 3px 8px; }
+      .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .metric-item { padding: 8px 8px; }
+      .metric-item .value { font-size: 0.98em; }
+      .dist-bar > div { font-size: 0.72em; line-height: 1.25; }
+      table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 0.8em;
+        white-space: nowrap;
+      }
+      thead, tbody, tr { white-space: nowrap; }
+      th, td { min-width: 90px; }
     }
   </style>
 </head>
@@ -236,7 +253,7 @@
 
 <div class="subtitle">
   <strong>분석 대상</strong>: 전체 1,179개 종목 중 <strong>79개</strong> 선정 (v2 기준: 최소 13점, 필수 필터 적용)<br>
-  <strong>생성 시각</strong>: 2026-02-12 15:35:26
+  <strong>생성 시각</strong>: 2026-02-13 01:00:45
 </div>
 
 
@@ -248,9 +265,9 @@
 <div class="info-box success">
   <p><strong>🎯 성과 요약</strong></p>
   <p>• 총 추천 종목: <strong>12개</strong> (TOP 6개 + 기타 6개)</p>
-  <p>• 성공: <strong class="text-green">9개</strong> / 실패: <strong class="text-red">3개</strong></p>
-  <p>• 성공률: <strong style="color:#66bb6a;">75.0%</strong></p>
-  <p>• 평균 수익률: <strong style="color:#66bb6a;">+2.64%</strong></p>
+  <p>• 성공: <strong class="text-green">7개</strong> / 실패: <strong class="text-red">5개</strong></p>
+  <p>• 성공률: <strong style="color:#66bb6a;">58.3%</strong></p>
+  <p>• 평균 수익률: <strong style="color:#66bb6a;">+2.66%</strong></p>
 </div>
 
 <table>
@@ -269,65 +286,65 @@
       <td>1</td>
       <td class="text-bold">화신<br><small>(010690)</small></td>
       <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
-      <td class="text-green" style="font-weight:700;">+12.73%</td>
+      <td class="text-green" style="font-weight:700;">+12.51%</td>
       <td><span class="badge badge-fire">대성공 🔥</span></td>
-      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>+12.73% 강한 상승</strong> | ✓ 종가/고가 97.7%, 이상점수 9.1, 연속매수 9674회</td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>+12.51% 강한 상승</strong> | ✓ 종가/고가 97.7%, 이상점수 9.1, 연속매수 9674회</td>
     </tr>
     <tr>
       <td>2</td>
       <td class="text-bold">큐리오시스<br><small>(494120)</small></td>
       <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
-      <td class="text-green" style="font-weight:700;">+0.66%</td>
-      <td><span class="badge" style="background:#2e7d32; color:#fff;">성공 ✅</span></td>
-      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+0.66% 소폭 상승 | ✓ 종가/고가 97.2%, 오후 매수 14.2배 폭발</td>
+      <td class="" style="font-weight:700;">+0.00%</td>
+      <td><span class="badge" style="background:#5d4037; color:#fff;">보합</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">0.00% 보합권 | ✗ 거래 부진</td>
     </tr>
     <tr>
       <td>3</td>
       <td class="text-bold">대한조선<br><small>(439260)</small></td>
       <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
-      <td class="text-green" style="font-weight:700;">+0.40%</td>
-      <td><span class="badge" style="background:#2e7d32; color:#fff;">성공 ✅</span></td>
-      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+0.40% 소폭 상승 | ✓ 종가/고가 100.0%로 고가 근처 마감</td>
+      <td class="text-red" style="font-weight:700;">-2.21%</td>
+      <td><span class="badge" style="background:#c62828; color:#fff;">실패 ❌</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>-2.21% 하락</strong> | ✗ 오후 매도세 (오후/오전 0.0배), 거래 부진</td>
     </tr>
     <tr>
       <td>4</td>
       <td class="text-bold">BNK금융지주<br><small>(138930)</small></td>
       <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
-      <td class="text-green" style="font-weight:700;">+3.86%</td>
+      <td class="text-green" style="font-weight:700;">+5.93%</td>
       <td><span class="badge badge-fire">대성공 🔥</span></td>
-      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+3.86% 상승 | ✓ 종가/고가 99.8%로 고가 근처 마감, 이상점수 8.7, 연속매수 752회, 14시후 768틱 활발</td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>+5.93% 강한 상승</strong> | ✓ 종가/고가 99.5%로 고가 근처 마감, 이상점수 8.7, 연속매수 752회, 14시후 768틱 활발</td>
     </tr>
     <tr>
       <td>5</td>
       <td class="text-bold">GKL<br><small>(114090)</small></td>
       <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
-      <td class="" style="font-weight:700;">+0.00%</td>
-      <td><span class="badge" style="background:#5d4037; color:#fff;">보합</span></td>
-      <td style="text-align:left; font-size:0.85em; line-height:1.5;">0.00% 보합권 | ✗ 오후 매도세 (오후/오전 0.0배), 거래 부진</td>
+      <td class="text-red" style="font-weight:700;">-2.53%</td>
+      <td><span class="badge" style="background:#c62828; color:#fff;">실패 ❌</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>-2.53% 하락</strong> | ✗ 오후 매도세 (오후/오전 0.0배), 거래 부진</td>
     </tr>
     <tr>
       <td>6</td>
       <td class="text-bold">카카오<br><small>(035720)</small></td>
       <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
-      <td class="text-red" style="font-weight:700;">-3.76%</td>
-      <td><span class="badge" style="background:#c62828; color:#fff;">실패 ❌</span></td>
-      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>-3.76% 하락</strong> | ✗ 종가/고가 92.7%, 오후 매도세 (오후/오전 0.3배)</td>
+      <td class="text-red" style="font-weight:700;">-0.17%</td>
+      <td><span class="badge" style="background:#5d4037; color:#fff;">보합</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">-0.17% 보합권 | ✗ 종가/고가 92.7%, 오후 매도세 (오후/오전 0.3배)</td>
     </tr>
     <tr>
       <td>7</td>
       <td class="text-bold">삼성전자<br><small>(005930)</small></td>
       <td><span style="color:#78909c; font-size:0.8em; font-weight:600;">기타</span></td>
-      <td class="text-green" style="font-weight:700;">+5.00%</td>
+      <td class="text-green" style="font-weight:700;">+6.44%</td>
       <td><span class="badge badge-fire">대성공 🔥</span></td>
-      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>+5.00% 강한 상승</strong> | ✓ 종가/고가 99.3%로 고가 근처 마감, 이상점수 8.7, 연속매수 670회, 14시후 1003틱 활발</td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>+6.44% 강한 상승</strong> | ✓ 종가/고가 99.4%로 고가 근처 마감, 이상점수 8.7, 연속매수 670회, 14시후 1003틱 활발</td>
     </tr>
     <tr>
       <td>8</td>
       <td class="text-bold">제일일렉트릭<br><small>(199820)</small></td>
       <td><span style="color:#78909c; font-size:0.8em; font-weight:600;">기타</span></td>
-      <td class="text-red" style="font-weight:700;">-0.28%</td>
-      <td><span class="badge" style="background:#5d4037; color:#fff;">보합</span></td>
-      <td style="text-align:left; font-size:0.85em; line-height:1.5;">-0.28% 보합권 | ✗ 오후 매도세 (오후/오전 0.0배), 거래 부진</td>
+      <td class="text-red" style="font-weight:700;">-2.67%</td>
+      <td><span class="badge" style="background:#c62828; color:#fff;">실패 ❌</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>-2.67% 하락</strong> | ✗ 오후 매도세 (오후/오전 0.0배), 거래 부진</td>
     </tr>
     <tr>
       <td>9</td>
@@ -341,25 +358,25 @@
       <td>10</td>
       <td class="text-bold">SK텔레콤<br><small>(017670)</small></td>
       <td><span style="color:#78909c; font-size:0.8em; font-weight:600;">기타</span></td>
-      <td class="text-green" style="font-weight:700;">+1.96%</td>
-      <td><span class="badge" style="background:#2e7d32; color:#fff;">성공 ✅</span></td>
-      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+1.96% 소폭 상승 | ✓ 종가/고가 99.1%로 고가 근처 마감, 이상점수 8.6, 14시후 622틱 활발</td>
+      <td class="text-green" style="font-weight:700;">+3.45%</td>
+      <td><span class="badge badge-fire">대성공 🔥</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+3.45% 상승 | ✓ 종가/고가 100.0%로 고가 근처 마감, 이상점수 8.6, 14시후 622틱 활발</td>
     </tr>
     <tr>
       <td>11</td>
       <td class="text-bold">포스코인터내셔널<br><small>(047050)</small></td>
       <td><span style="color:#78909c; font-size:0.8em; font-weight:600;">기타</span></td>
-      <td class="text-green" style="font-weight:700;">+6.32%</td>
+      <td class="text-green" style="font-weight:700;">+6.65%</td>
       <td><span class="badge badge-fire">대성공 🔥</span></td>
-      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>+6.32% 강한 상승</strong> | ✓ 종가/고가 97.3%, 이상점수 9.6 (강력), 연속매수 1033회, 14시후 970틱 활발</td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>+6.65% 강한 상승</strong> | ✓ 종가/고가 96.9%, 이상점수 9.6 (강력), 연속매수 1033회, 14시후 970틱 활발</td>
     </tr>
     <tr>
       <td>12</td>
       <td class="text-bold">코리안리<br><small>(003690)</small></td>
       <td><span style="color:#78909c; font-size:0.8em; font-weight:600;">기타</span></td>
-      <td class="text-green" style="font-weight:700;">+1.59%</td>
+      <td class="text-green" style="font-weight:700;">+1.28%</td>
       <td><span class="badge" style="background:#2e7d32; color:#fff;">성공 ✅</span></td>
-      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+1.59% 소폭 상승 | ✓ 종가/고가 99.6%로 고가 근처 마감, 오후 매수 1.8배 집중, 이상점수 8.2, 연속매수 129회</td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+1.28% 소폭 상승 | ✓ 종가/고가 99.3%로 고가 근처 마감, 오후 매수 1.8배 집중, 이상점수 8.2, 연속매수 129회</td>
     </tr>
   </tbody>
 </table>
@@ -367,31 +384,31 @@
 <div class="card" style="border-color: #4fc3f7;">
   <h3 style="margin-top:0;">🔍 검증 분석 및 반성</h3>
 
-  <p style="margin-top:14px;"><strong style="color:#66bb6a;">✅ 성공한 추천 (9개)</strong></p>
+  <p style="margin-top:14px;"><strong style="color:#66bb6a;">✅ 성공한 추천 (7개)</strong></p>
   <ul style="margin: 8px 0 16px 20px; color:#b0bec5;">
-    <li><strong>화신</strong>: +12.73% - <strong>+12.73% 강한 상승</strong> | ✓ 종가/고가 97.7%, 이상점수 9.1, 연속매수 9674회</li>
-    <li><strong>큐리오시스</strong>: +0.66% - +0.66% 소폭 상승 | ✓ 종가/고가 97.2%, 오후 매수 14.2배 폭발</li>
-    <li><strong>대한조선</strong>: +0.40% - +0.40% 소폭 상승 | ✓ 종가/고가 100.0%로 고가 근처 마감</li>
-    <li><strong>BNK금융지주</strong>: +3.86% - +3.86% 상승 | ✓ 종가/고가 99.8%로 고가 근처 마감, 이상점수 8.7, 연속매수 752회, 14시후 768틱 활발</li>
-    <li><strong>삼성전자</strong>: +5.00% - <strong>+5.00% 강한 상승</strong> | ✓ 종가/고가 99.3%로 고가 근처 마감, 이상점수 8.7, 연속매수 670회, 14시후 1003틱 활발</li>
+    <li><strong>화신</strong>: +12.51% - <strong>+12.51% 강한 상승</strong> | ✓ 종가/고가 97.7%, 이상점수 9.1, 연속매수 9674회</li>
+    <li><strong>BNK금융지주</strong>: +5.93% - <strong>+5.93% 강한 상승</strong> | ✓ 종가/고가 99.5%로 고가 근처 마감, 이상점수 8.7, 연속매수 752회, 14시후 768틱 활발</li>
+    <li><strong>삼성전자</strong>: +6.44% - <strong>+6.44% 강한 상승</strong> | ✓ 종가/고가 99.4%로 고가 근처 마감, 이상점수 8.7, 연속매수 670회, 14시후 1003틱 활발</li>
     <li><strong>두산밥캣</strong>: +3.24% - +3.24% 상승 | ✓ 종가/고가 98.7%, 이상점수 9.2, 연속매수 2226회</li>
-    <li><strong>SK텔레콤</strong>: +1.96% - +1.96% 소폭 상승 | ✓ 종가/고가 99.1%로 고가 근처 마감, 이상점수 8.6, 14시후 622틱 활발</li>
-    <li><strong>포스코인터내셔널</strong>: +6.32% - <strong>+6.32% 강한 상승</strong> | ✓ 종가/고가 97.3%, 이상점수 9.6 (강력), 연속매수 1033회, 14시후 970틱 활발</li>
-    <li><strong>코리안리</strong>: +1.59% - +1.59% 소폭 상승 | ✓ 종가/고가 99.6%로 고가 근처 마감, 오후 매수 1.8배 집중, 이상점수 8.2, 연속매수 129회</li>
+    <li><strong>SK텔레콤</strong>: +3.45% - +3.45% 상승 | ✓ 종가/고가 100.0%로 고가 근처 마감, 이상점수 8.6, 14시후 622틱 활발</li>
+    <li><strong>포스코인터내셔널</strong>: +6.65% - <strong>+6.65% 강한 상승</strong> | ✓ 종가/고가 96.9%, 이상점수 9.6 (강력), 연속매수 1033회, 14시후 970틱 활발</li>
+    <li><strong>코리안리</strong>: +1.28% - +1.28% 소폭 상승 | ✓ 종가/고가 99.3%로 고가 근처 마감, 오후 매수 1.8배 집중, 이상점수 8.2, 연속매수 129회</li>
   </ul>
 
-  <p><strong style="color:#ef5350;">❌ 실패한 추천 (1개)</strong></p>
+  <p><strong style="color:#ef5350;">❌ 실패한 추천 (3개)</strong></p>
   <ul style="margin: 8px 0 16px 20px; color:#b0bec5;">
-    <li><strong>카카오</strong>: -3.76% - <strong>-3.76% 하락</strong> | ✗ 종가/고가 92.7%, 오후 매도세 (오후/오전 0.3배)</li>
+    <li><strong>대한조선</strong>: -2.21% - <strong>-2.21% 하락</strong> | ✗ 오후 매도세 (오후/오전 0.0배), 거래 부진</li>
+    <li><strong>GKL</strong>: -2.53% - <strong>-2.53% 하락</strong> | ✗ 오후 매도세 (오후/오전 0.0배), 거래 부진</li>
+    <li><strong>제일일렉트릭</strong>: -2.67% - <strong>-2.67% 하락</strong> | ✗ 오후 매도세 (오후/오전 0.0배), 거래 부진</li>
   </ul>
 
   <p><strong style="color:#ffd54f;">💡 배운 점 & 개선 방향</strong></p>
   <ul style="margin: 8px 0 0 20px; color:#b0bec5;">
-    <li>성공률 70% 이상 달성. <strong>종가베팅 전략이 효과적</strong>으로 검증됨.</li>
-    <li>실패 종목 중 오후/오전 비율 0.5배 미만: <strong>1개</strong> (카카오) → v2에서 감점(-1) 적용.</li>
-    <li>TOP 성공률: 67% (4/6) vs 기타 성공률: 83% (5/6)</li>
+    <li>성공률 50% 이상. 전략은 유효하나 <strong>실패 종목 필터 강화 필요</strong>.</li>
+    <li>실패 종목 중 오후/오전 비율 0.5배 미만: <strong>3개</strong> (대한조선, GKL, 제일일렉트릭) → v2에서 감점(-1) 적용.</li>
+    <li>TOP 성공률: 33% (2/6) vs 기타 성공률: 83% (5/6)</li>
     <li>📊 <strong>"새로 발견된 종목"이 TOP보다 성과 우수</strong> → v2에서 순수 점수 기준 TOP 선정으로 변경.</li>
-    <li>평균 수익률 +2.64%로 플러스. <strong>수익 창출 성공</strong>.</li>
+    <li>평균 수익률 +2.66%로 플러스. <strong>수익 창출 성공</strong>.</li>
     <li>v2 적용 사항: 시가 기준 등락률, 감점제(음봉/과열/오후약세), 필수 필터(종/고≥92%, 틱≥50), 최소 점수 13점.</li>
   </ul>
 </div>
@@ -996,7 +1013,7 @@
 
 <div class="footer">
   <p>📊 종가베팅 후보 분석 리포트</p>
-  <p>생성 시각: 2026-02-12 15:35:26</p>
+  <p>생성 시각: 2026-02-13 01:00:45</p>
 </div>
 
 </body>
