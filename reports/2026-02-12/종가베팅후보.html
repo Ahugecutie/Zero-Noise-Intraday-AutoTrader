@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📊 2026년 02월 12일 종가베팅 후보 분석</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', 'Malgun Gothic', '맑은 고딕', sans-serif;
+      background: #0f1923;
+      color: #e0e6ed;
+      line-height: 1.7;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.8em;
+      color: #fff;
+      border-bottom: 3px solid #ff6b35;
+      padding-bottom: 12px;
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 1.4em;
+      color: #4fc3f7;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      padding-left: 10px;
+      border-left: 4px solid #4fc3f7;
+    }
+    h3 {
+      font-size: 1.15em;
+      color: #ffd54f;
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      color: #90a4ae;
+      font-size: 0.9em;
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+    .subtitle strong { color: #b0bec5; }
+
+    /* Cards */
+    .card {
+      background: #1a2734;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      border: 1px solid #263545;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: #4fc3f7; }
+    .card-title {
+      font-size: 1.2em;
+      color: #fff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-title .rank {
+      background: linear-gradient(135deg, #ff6b35, #ff8f65);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.85em;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .card-title .score {
+      background: #263545;
+      color: #4fc3f7;
+      font-size: 0.85em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+    .card-title .new-tag {
+      background: #e91e63;
+      color: #fff;
+      font-size: 0.7em;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    /* Metric grid inside cards */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .metric-item {
+      background: #0f1923;
+      border-radius: 8px;
+      padding: 10px 14px;
+      text-align: center;
+    }
+    .metric-item .label {
+      font-size: 0.75em;
+      color: #78909c;
+      margin-bottom: 4px;
+    }
+    .metric-item .value {
+      font-size: 1.1em;
+      font-weight: 700;
+    }
+    .metric-item .value.green { color: #66bb6a; }
+    .metric-item .value.red { color: #ef5350; }
+    .metric-item .value.gold { color: #ffd54f; }
+    .metric-item .value.blue { color: #4fc3f7; }
+    .metric-item .check { color: #66bb6a; font-size: 0.8em; }
+
+    .reason {
+      color: #b0bec5;
+      font-size: 0.9em;
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: #0f1923;
+      border-radius: 8px;
+      border-left: 3px solid #4fc3f7;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px;
+      font-size: 0.9em;
+    }
+    thead th {
+      background: #1a2734;
+      color: #4fc3f7;
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 2px solid #37474f;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #1e2d3d;
+    }
+    tbody tr:hover { background: #1a2734; }
+    tbody tr:nth-child(even) { background: rgba(26, 39, 52, 0.4); }
+    .text-green { color: #66bb6a; }
+    .text-red { color: #ef5350; }
+    .text-gold { color: #ffd54f; font-weight: 700; }
+    .text-blue { color: #4fc3f7; }
+    .text-bold { font-weight: 700; color: #fff; }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.85em;
+      font-weight: 600;
+    }
+    .badge-fire { background: #ff6b35; color: #fff; }
+    .badge-new { background: #e91e63; color: #fff; }
+    .badge-a { background: #2e7d32; color: #fff; }
+
+    /* Info box */
+    .info-box {
+      background: linear-gradient(135deg, #1a237e, #283593);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin: 16px 0;
+      border: 1px solid #3949ab;
+    }
+    .info-box.success {
+      background: linear-gradient(135deg, #1b3a1b, #2e5a2e);
+      border-color: #2e7d32;
+    }
+    .info-box p { margin: 4px 0; }
+    .info-box strong { color: #fff; }
+
+    .info-box ul {
+      margin: 8px 0 0 20px;
+      color: #b0bec5;
+    }
+    .info-box li { margin: 4px 0; }
+
+    /* Distribution bar */
+    .dist-bar {
+      display: flex;
+      height: 50px;
+      margin: 16px 0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .dist-bar > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.85em;
+      font-weight: 600;
+      text-align: center;
+      padding: 4px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #263545;
+      margin: 30px 0;
+    }
+
+    .footer {
+      text-align: center;
+      color: #546e7a;
+      font-size: 0.85em;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #263545;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.5em; }
+      h2 { font-size: 1.2em; }
+      .metric-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+      table { font-size: 0.8em; }
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>📊 2026년 02월 12일 종가베팅 후보 분석</h1>
+
+<div class="subtitle">
+  <strong>분석 대상</strong>: 전체 1,179개 종목 중 <strong>79개</strong> 선정 (v2 기준: 최소 13점, 필수 필터 적용)<br>
+  <strong>생성 시각</strong>: 2026-02-12 15:35:26
+</div>
+
+
+<hr>
+
+<!-- ==================== 어제 추천 검증 ==================== -->
+<h2>📈 어제(2026년 02월 11일) 추천 검증 결과</h2>
+
+<div class="info-box success">
+  <p><strong>🎯 성과 요약</strong></p>
+  <p>• 총 추천 종목: <strong>12개</strong> (TOP 6개 + 기타 6개)</p>
+  <p>• 성공: <strong class="text-green">9개</strong> / 실패: <strong class="text-red">3개</strong></p>
+  <p>• 성공률: <strong style="color:#66bb6a;">75.0%</strong></p>
+  <p>• 평균 수익률: <strong style="color:#66bb6a;">+2.64%</strong></p>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:40px;">순위</th>
+      <th style="width:150px;">종목</th>
+      <th style="width:60px;">구분</th>
+      <th style="width:80px;">수익률</th>
+      <th style="width:100px;">결과</th>
+      <th style="text-align:left;">상세 분석 (성공/실패 요인)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td class="text-bold">화신<br><small>(010690)</small></td>
+      <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
+      <td class="text-green" style="font-weight:700;">+12.73%</td>
+      <td><span class="badge badge-fire">대성공 🔥</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>+12.73% 강한 상승</strong> | ✓ 종가/고가 97.7%, 이상점수 9.1, 연속매수 9674회</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td class="text-bold">큐리오시스<br><small>(494120)</small></td>
+      <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
+      <td class="text-green" style="font-weight:700;">+0.66%</td>
+      <td><span class="badge" style="background:#2e7d32; color:#fff;">성공 ✅</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+0.66% 소폭 상승 | ✓ 종가/고가 97.2%, 오후 매수 14.2배 폭발</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td class="text-bold">대한조선<br><small>(439260)</small></td>
+      <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
+      <td class="text-green" style="font-weight:700;">+0.40%</td>
+      <td><span class="badge" style="background:#2e7d32; color:#fff;">성공 ✅</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+0.40% 소폭 상승 | ✓ 종가/고가 100.0%로 고가 근처 마감</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td class="text-bold">BNK금융지주<br><small>(138930)</small></td>
+      <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
+      <td class="text-green" style="font-weight:700;">+3.86%</td>
+      <td><span class="badge badge-fire">대성공 🔥</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+3.86% 상승 | ✓ 종가/고가 99.8%로 고가 근처 마감, 이상점수 8.7, 연속매수 752회, 14시후 768틱 활발</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td class="text-bold">GKL<br><small>(114090)</small></td>
+      <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
+      <td class="" style="font-weight:700;">+0.00%</td>
+      <td><span class="badge" style="background:#5d4037; color:#fff;">보합</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">0.00% 보합권 | ✗ 오후 매도세 (오후/오전 0.0배), 거래 부진</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td class="text-bold">카카오<br><small>(035720)</small></td>
+      <td><span style="color:#ff6b35; font-size:0.8em; font-weight:600;">TOP</span></td>
+      <td class="text-red" style="font-weight:700;">-3.76%</td>
+      <td><span class="badge" style="background:#c62828; color:#fff;">실패 ❌</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>-3.76% 하락</strong> | ✗ 종가/고가 92.7%, 오후 매도세 (오후/오전 0.3배)</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td class="text-bold">삼성전자<br><small>(005930)</small></td>
+      <td><span style="color:#78909c; font-size:0.8em; font-weight:600;">기타</span></td>
+      <td class="text-green" style="font-weight:700;">+5.00%</td>
+      <td><span class="badge badge-fire">대성공 🔥</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>+5.00% 강한 상승</strong> | ✓ 종가/고가 99.3%로 고가 근처 마감, 이상점수 8.7, 연속매수 670회, 14시후 1003틱 활발</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td class="text-bold">제일일렉트릭<br><small>(199820)</small></td>
+      <td><span style="color:#78909c; font-size:0.8em; font-weight:600;">기타</span></td>
+      <td class="text-red" style="font-weight:700;">-0.28%</td>
+      <td><span class="badge" style="background:#5d4037; color:#fff;">보합</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">-0.28% 보합권 | ✗ 오후 매도세 (오후/오전 0.0배), 거래 부진</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td class="text-bold">두산밥캣<br><small>(241560)</small></td>
+      <td><span style="color:#78909c; font-size:0.8em; font-weight:600;">기타</span></td>
+      <td class="text-green" style="font-weight:700;">+3.24%</td>
+      <td><span class="badge badge-fire">대성공 🔥</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+3.24% 상승 | ✓ 종가/고가 98.7%, 이상점수 9.2, 연속매수 2226회</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td class="text-bold">SK텔레콤<br><small>(017670)</small></td>
+      <td><span style="color:#78909c; font-size:0.8em; font-weight:600;">기타</span></td>
+      <td class="text-green" style="font-weight:700;">+1.96%</td>
+      <td><span class="badge" style="background:#2e7d32; color:#fff;">성공 ✅</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+1.96% 소폭 상승 | ✓ 종가/고가 99.1%로 고가 근처 마감, 이상점수 8.6, 14시후 622틱 활발</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td class="text-bold">포스코인터내셔널<br><small>(047050)</small></td>
+      <td><span style="color:#78909c; font-size:0.8em; font-weight:600;">기타</span></td>
+      <td class="text-green" style="font-weight:700;">+6.32%</td>
+      <td><span class="badge badge-fire">대성공 🔥</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;"><strong>+6.32% 강한 상승</strong> | ✓ 종가/고가 97.3%, 이상점수 9.6 (강력), 연속매수 1033회, 14시후 970틱 활발</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td class="text-bold">코리안리<br><small>(003690)</small></td>
+      <td><span style="color:#78909c; font-size:0.8em; font-weight:600;">기타</span></td>
+      <td class="text-green" style="font-weight:700;">+1.59%</td>
+      <td><span class="badge" style="background:#2e7d32; color:#fff;">성공 ✅</span></td>
+      <td style="text-align:left; font-size:0.85em; line-height:1.5;">+1.59% 소폭 상승 | ✓ 종가/고가 99.6%로 고가 근처 마감, 오후 매수 1.8배 집중, 이상점수 8.2, 연속매수 129회</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="card" style="border-color: #4fc3f7;">
+  <h3 style="margin-top:0;">🔍 검증 분석 및 반성</h3>
+
+  <p style="margin-top:14px;"><strong style="color:#66bb6a;">✅ 성공한 추천 (9개)</strong></p>
+  <ul style="margin: 8px 0 16px 20px; color:#b0bec5;">
+    <li><strong>화신</strong>: +12.73% - <strong>+12.73% 강한 상승</strong> | ✓ 종가/고가 97.7%, 이상점수 9.1, 연속매수 9674회</li>
+    <li><strong>큐리오시스</strong>: +0.66% - +0.66% 소폭 상승 | ✓ 종가/고가 97.2%, 오후 매수 14.2배 폭발</li>
+    <li><strong>대한조선</strong>: +0.40% - +0.40% 소폭 상승 | ✓ 종가/고가 100.0%로 고가 근처 마감</li>
+    <li><strong>BNK금융지주</strong>: +3.86% - +3.86% 상승 | ✓ 종가/고가 99.8%로 고가 근처 마감, 이상점수 8.7, 연속매수 752회, 14시후 768틱 활발</li>
+    <li><strong>삼성전자</strong>: +5.00% - <strong>+5.00% 강한 상승</strong> | ✓ 종가/고가 99.3%로 고가 근처 마감, 이상점수 8.7, 연속매수 670회, 14시후 1003틱 활발</li>
+    <li><strong>두산밥캣</strong>: +3.24% - +3.24% 상승 | ✓ 종가/고가 98.7%, 이상점수 9.2, 연속매수 2226회</li>
+    <li><strong>SK텔레콤</strong>: +1.96% - +1.96% 소폭 상승 | ✓ 종가/고가 99.1%로 고가 근처 마감, 이상점수 8.6, 14시후 622틱 활발</li>
+    <li><strong>포스코인터내셔널</strong>: +6.32% - <strong>+6.32% 강한 상승</strong> | ✓ 종가/고가 97.3%, 이상점수 9.6 (강력), 연속매수 1033회, 14시후 970틱 활발</li>
+    <li><strong>코리안리</strong>: +1.59% - +1.59% 소폭 상승 | ✓ 종가/고가 99.6%로 고가 근처 마감, 오후 매수 1.8배 집중, 이상점수 8.2, 연속매수 129회</li>
+  </ul>
+
+  <p><strong style="color:#ef5350;">❌ 실패한 추천 (1개)</strong></p>
+  <ul style="margin: 8px 0 16px 20px; color:#b0bec5;">
+    <li><strong>카카오</strong>: -3.76% - <strong>-3.76% 하락</strong> | ✗ 종가/고가 92.7%, 오후 매도세 (오후/오전 0.3배)</li>
+  </ul>
+
+  <p><strong style="color:#ffd54f;">💡 배운 점 & 개선 방향</strong></p>
+  <ul style="margin: 8px 0 0 20px; color:#b0bec5;">
+    <li>성공률 70% 이상 달성. <strong>종가베팅 전략이 효과적</strong>으로 검증됨.</li>
+    <li>실패 종목 중 오후/오전 비율 0.5배 미만: <strong>1개</strong> (카카오) → v2에서 감점(-1) 적용.</li>
+    <li>TOP 성공률: 67% (4/6) vs 기타 성공률: 83% (5/6)</li>
+    <li>📊 <strong>"새로 발견된 종목"이 TOP보다 성과 우수</strong> → v2에서 순수 점수 기준 TOP 선정으로 변경.</li>
+    <li>평균 수익률 +2.64%로 플러스. <strong>수익 창출 성공</strong>.</li>
+    <li>v2 적용 사항: 시가 기준 등락률, 감점제(음봉/과열/오후약세), 필수 필터(종/고≥92%, 틱≥50), 최소 점수 13점.</li>
+  </ul>
+</div>
+
+
+<hr>
+
+<!-- ==================== 체크리스트 ==================== -->
+<h2>📋 종가베팅 v2 점수 기준 (최대 26점, 감점 포함)</h2>
+
+<div class="info-box">
+  <p>💡 <strong>v2 변경점</strong>: 양봉/상승률 판정을 시가 기준으로 수정, 과열 감점(-2), 음봉 감점(-2), 오후 약세 감점(-1) 도입. 기존 중복 항목(⑩ 오후가격추세) 제거.</p>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th><th>체크 항목</th><th>핵심 기준</th><th>배점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>①</td><td>양봉 마감</td><td class="text-gold">양봉(종가&gt;시가)=<span class="text-green">+2</span> / 음봉=<span class="text-red">-2</span></td><td>+2~-2</td></tr>
+    <tr><td>②</td><td class="text-bold">종가/고가 비율</td><td class="text-gold">99.5%+=5 / 99%+=4 / 97%+=3 / 95%+=2 / 92%+=1</td><td class="text-gold">+5</td></tr>
+    <tr><td>③</td><td>등락률(시가기준)</td><td>2~10%=<span class="text-green">+3</span> / 0.5~2%=+2 / 10~15%=+1 / <span class="text-red">15%+=−2(과열)</span></td><td>+3~-2</td></tr>
+    <tr><td>④</td><td>거래량(틱)</td><td>5000+=3 / 1000+=2 / 300+=1</td><td>+3</td></tr>
+    <tr><td>⑤</td><td class="text-bold">오후/오전 비율</td><td class="text-gold">3배+=<span class="text-green">+4</span> / 2배+=3 / 1배+=2 / 0.5배+=1 / <span class="text-red">&lt;0.5=−1</span></td><td class="text-gold">+4~-1</td></tr>
+    <tr><td>⑥</td><td>14시 이후 활동</td><td>300틱+=2 / 100틱+=1</td><td>+2</td></tr>
+    <tr><td>⑦</td><td>이상 점수</td><td>9.5+=3 / 8.5+=2 / 7.5+=1</td><td>+3</td></tr>
+    <tr><td>⑧</td><td>연속 매수</td><td>100회+=2 / 30회+=1</td><td>+2</td></tr>
+    <tr><td>⑨</td><td>자금 흐름</td><td>1억+=3 / 5천만+=2 / 1천만+=1</td><td>+3</td></tr>
+  </tbody>
+</table>
+
+<div class="info-box success">
+  <p>🎯 <strong>필수 조건</strong> (미충족 시 후보 제외):</p>
+  <ul>
+    <li>종가/고가 비율 ≥ 92%</li>
+    <li>최소 틱 수 ≥ 50</li>
+    <li>상한가(+29%) 제외 (다음날 매수 불가)</li>
+    <li>하락 종목(-3% 이하) 제외</li>
+    <li>최소 점수 ≥ 13점</li>
+  </ul>
+</div>
+
+<hr>
+
+<!-- ==================== TOP 6 ==================== -->
+<h2>🏆 종가베팅 TOP 6 추천 후보</h2>
+
+<div class="info-box success">
+  <p>💡 <strong>선정 기준</strong>: 전체 종목에서 점수와 패턴이 가장 우수한 상위 6개를 선정합니다.</p>
+</div>
+
+<!-- 1위 BNK금융지주 -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">1위</span>
+    <span>BNK금융지주 (138930)</span>
+    <span class="score">20점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+3.9%</div>
+      <div class="check">✅ 적정</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value" style="color:gold; font-size:1.1em;">99.8%</div>
+      <div class="check">✅ 거의 고가</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">1,364건</div>
+      <div class="check">✅ 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value blue">1.3배</div>
+      <div class="check">✅ 정상</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value green">8.7</div>
+      <div class="check">✅ 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value" style="color:#ff6b35;">752회</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">768틱</div>
+      <div class="check">✅ 매우 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">21,500원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 종가가 고가의 <strong>99.8%</strong>로 거의 고가 마감. 이상 점수 8.7. 연속 매수 752회로 강한 매수 의지. +3.9% 적정 상승. 14시 이후 768틱으로 장 마감까지 활발한 매수.
+  </div>
+</div>
+
+<!-- 2위 포스코인터내셔널 -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">2위</span>
+    <span>포스코인터내셔널 (047050)</span>
+    <span class="score">18점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+6.3%</div>
+      <div class="check">✅ 적정 강세</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value gold">97.3%</div>
+      <div class="check">✅ 우수</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">2,346건</div>
+      <div class="check">✅ 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value blue">0.7배</div>
+      <div class="check">✅ 정상</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value" style="color:#ffd54f;">9.6</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value" style="color:#ff6b35;">1033회</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">970틱</div>
+      <div class="check">✅ 매우 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">69,000원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 종가/고가 97.3%로 우수. 이상 점수 9.6로 높은 수준. 연속 매수 1033회로 강한 매수 의지. +6.3% 상승이면서 끝까지 밀리지 않음 = 강한 매수 의지. 14시 이후 970틱으로 장 마감까지 활발한 매수.
+  </div>
+</div>
+
+<!-- 3위 싸이맥스 -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">3위</span>
+    <span>싸이맥스 (160980)</span>
+    <span class="score">18점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+8.2%</div>
+      <div class="check">✅ 적정 강세</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value gold">97.0%</div>
+      <div class="check">✅ 우수</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">363건</div>
+      <div class="check">✅ 양호</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value" style="color:#ff6b35;">99.0배 🔥</div>
+      <div class="check">✅ 오후 매수 폭발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value green">8.4</div>
+      <div class="check">✅ 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value" style="color:#ff6b35;">581회</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">363틱</div>
+      <div class="check">✅ 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">21,100원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 종가/고가 97.0%로 우수. 오후/오전 비율 99.0배로 <strong>오후 매수 폭발</strong> 🔥. 이상 점수 8.4. 연속 매수 581회로 강한 매수 의지. +8.2% 상승이면서 끝까지 밀리지 않음 = 강한 매수 의지. 14시 이후 363틱으로 활발.
+  </div>
+</div>
+
+<!-- 4위 CJ ENM -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">4위</span>
+    <span>CJ ENM (035760)</span>
+    <span class="score">17점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+4.1%</div>
+      <div class="check">✅ 적정</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value" style="color:gold; font-size:1.1em;">100.0% 🔥</div>
+      <div class="check">✅ 종가=고가!</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">59건</div>
+      <div class="check">✅ 양호</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value" style="color:#ff6b35;">3.5배</div>
+      <div class="check">✅ 오후 매수 집중</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value blue">8.0</div>
+      <div class="check">✅ 정상</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value green">134회</div>
+      <div class="check">✅ 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">46틱</div>
+      <div class="check">✅ 양호</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">79,300원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 종가가 고가와 <strong>100% 일치</strong> 🔥. 오후/오전 비율 3.5배로 오후 매수 집중. 연속 매수 134회. +4.1% 적정 상승.
+  </div>
+</div>
+
+<!-- 5위 삼성중공업 -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">5위</span>
+    <span>삼성중공업 (010140)</span>
+    <span class="score">17점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+0.4%</div>
+      <div class="check">✅ 소폭</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value" style="color:gold; font-size:1.1em;">100.0% 🔥</div>
+      <div class="check">✅ 종가=고가!</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">1,840건</div>
+      <div class="check">✅ 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value blue">0.5배</div>
+      <div class="check">✅ 정상</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value green">8.5</div>
+      <div class="check">✅ 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value green">100회</div>
+      <div class="check">✅ 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">618틱</div>
+      <div class="check">✅ 매우 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">28,200원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 종가가 고가와 <strong>100% 일치</strong> 🔥. 이상 점수 8.5. 연속 매수 100회. +0.4% 소폭 상승이지만 패턴 우수. 14시 이후 618틱으로 장 마감까지 활발한 매수.
+  </div>
+</div>
+
+<!-- 6위 젬백스 -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">6위</span>
+    <span>젬백스 (082270)</span>
+    <span class="score">17점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+5.3%</div>
+      <div class="check">✅ 적정 강세</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value" style="color:gold; font-size:1.1em;">99.9%</div>
+      <div class="check">✅ 거의 고가</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">76건</div>
+      <div class="check">✅ 양호</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value" style="color:#ff6b35;">24.3배 🔥</div>
+      <div class="check">✅ 오후 매수 폭발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value blue">7.9</div>
+      <div class="check">✅ 정상</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value" style="color:#ff6b35;">677회</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">73틱</div>
+      <div class="check">✅ 양호</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">40,000원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 종가가 고가의 <strong>99.9%</strong>로 거의 고가 마감. 오후/오전 비율 24.3배로 <strong>오후 매수 폭발</strong> 🔥. 연속 매수 677회로 강한 매수 의지. +5.3% 상승이면서 끝까지 밀리지 않음 = 강한 매수 의지.
+  </div>
+</div>
+
+<hr>
+
+<!-- ==================== 새로 발견된 종목 ==================== -->
+<h2>🌟 새로 발견된 종목 TOP 10 (기존 분석에서 빠졌던 숨은 종목)</h2>
+
+<div class="info-box">
+  <p>💡 이 종목들은 상승률이 0~5%로 기존 분석에서 <strong>완전히 제외</strong>되었지만,<br>
+  종가베팅 핵심 지표(종가/고가, 오후매수, 이상점수)가 매우 우수한 종목입니다.</p>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>순위</th><th>종목</th><th>상승률</th><th>종가/고가</th><th>점수</th><th>핵심 포인트</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="badge badge-fire">1 🔥</span></td>
+      <td class="text-bold">BNK금융지주 (138930)</td>
+      <td class="text-green">+3.9%</td>
+      <td><span class="text-gold">99.8%</span></td>
+      <td>20점</td>
+      <td>14시후 768틱</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-fire">2 🔥</span></td>
+      <td class="text-bold">CJ ENM (035760)</td>
+      <td class="text-green">+4.1%</td>
+      <td><span style="color:#ff6b35; font-weight:700;">100.0% 🔥</span></td>
+      <td>17점</td>
+      <td>오후 3.5배, 종가=고가!</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-new">3</span></td>
+      <td class="text-bold">삼성중공업 (010140)</td>
+      <td class="text-green">+0.4%</td>
+      <td><span style="color:#ff6b35; font-weight:700;">100.0% 🔥</span></td>
+      <td>17점</td>
+      <td>14시후 618틱, 종가=고가!</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-new">4</span></td>
+      <td class="text-bold">코리아써키트 (007810)</td>
+      <td class="text-green">+3.6%</td>
+      <td><span class="text-gold">99.7%</span></td>
+      <td>17점</td>
+      <td>오후 5.0배 🔥</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-new">5</span></td>
+      <td class="text-bold">제일기획 (030000)</td>
+      <td class="text-green">+0.5%</td>
+      <td><span class="text-gold">99.5%</span></td>
+      <td>17점</td>
+      <td>오후 3.6배</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td class="text-bold">하나마이크론 (067310)</td>
+      <td class="text-green">+2.5%</td>
+      <td>99.3%</td>
+      <td>17점</td>
+      <td>이상점수 9.1</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td class="text-bold">SK텔레콤 (017670)</td>
+      <td class="text-green">+2.0%</td>
+      <td>99.1%</td>
+      <td>17점</td>
+      <td>14시후 622틱</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td class="text-bold">팬오션 (028670)</td>
+      <td class="text-green">+3.4%</td>
+      <td>99.0%</td>
+      <td>17점</td>
+      <td>17점</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td class="text-bold">HD현대에너지솔루션 (322000)</td>
+      <td class="text-green">+3.6%</td>
+      <td><span style="color:#ff6b35; font-weight:700;">100.0% 🔥</span></td>
+      <td>16점</td>
+      <td>오후 12.2배 🔥, 종가=고가!</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td class="text-bold">리노공업 (058470)</td>
+      <td class="text-green">+2.3%</td>
+      <td><span style="color:#ff6b35; font-weight:700;">100.0% 🔥</span></td>
+      <td>16점</td>
+      <td>종가=고가!</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Detail explanations -->
+<div class="card" style="border-color: #e91e63;">
+  <h3 style="margin-top:0;">🔍 왜 이 종목들이 주목할 만한가?</h3>
+
+  <p style="margin-top:14px;"><strong style="color:#ffd54f;">BNK금융지주 (+3.9%, 20점)</strong> — "겨우 3.9% 올랐을 뿐인데?"</p>
+  <ul style="margin: 8px 0 16px 20px; color:#b0bec5;">
+    <li>종가/고가 99.8% = 장중 최고가 근처로 마감</li>
+    <li>이상점수 8.7</li>
+    <li>14시 이후 768틱 = 장 마감 2시간 동안 엄청난 매수 활동</li>
+    <li>해석: <em>"큰 손이 장 후반에 조용히 대량 매집하고 있다"</em></li>
+  </ul>
+
+  <p><strong style="color:#ffd54f;">CJ ENM (+4.1%, 17점)</strong>— "종가 = 고가 100%!"</p>
+  <ul style="margin: 8px 0 16px 20px; color:#b0bec5;">
+    <li>당일 고가가 곧 종가. <strong style="color:#fff;">밀리지 않고 가장 높은 가격으로 마감</strong></li>
+    <li>오후/오전 3.5배 → 오후에 매수가 3배 이상</li>
+    <li>+4.1%는 작아 보이지만, 이런 패턴은 <strong style="color:#66bb6a;">내일 본격 상승 시작</strong> 신호일 수 있음</li>
+  </ul>
+
+  <p><strong style="color:#ffd54f;">삼성중공업 (+0.4%, 17점)</strong></p>
+  <ul style="margin: 8px 0 0 20px; color:#b0bec5;">
+    <li>종가/고가 100.0% + 이상점수 8.5 + 오후/오전 0.5배</li>
+    <li>장 마감 직전까지 매수가 오전의 0.5배 집중</li>
+  </ul>
+</div>
+
+<hr>
+
+<!-- ==================== 상승률 분포 ==================== -->
+<h2>📊 상승률 구간별 종가베팅 후보 분포</h2>
+
+<div class="dist-bar">
+  <div style="width:38.0%; background:#1565c0;" title="+0~2%: 30개">0~2%<br>30개</div>
+  <div style="width:36.7%; background:#2e7d32;" title="+2~5%: 29개">2~5%<br>29개</div>
+  <div style="width:20.3%; background:#e65100;" title="+5~10%: 16개">5~10%<br>16개</div>
+  <div style="width:5.1%; background:#bf360c;" title="+10~20%: 4개">10~20%<br>4개</div>
+  <div style="width:0.0%; background:#880e4f;" title="+20%+: 0개">20%+<br>0개</div>
+</div>
+
+<table>
+  <thead>
+    <tr><th>상승률 구간</th><th>종목 수</th><th>비율</th><th>특징</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>+0~2%</td><td>30개</td><td>38.0%</td><td><span class="badge badge-fire">🔥 새로 발견!</span> 소폭이지만 패턴 우수</td></tr>
+    <tr><td>+2~5%</td><td>29개</td><td>36.7%</td><td>안정적, 갭업 기대</td></tr>
+    <tr><td class="text-bold">+5~10%</td><td class="text-bold">16개</td><td class="text-bold">20.3%</td><td><span class="badge badge-a">✅ 최적 구간</span></td></tr>
+    <tr><td>+10~20%</td><td>4개</td><td>5.1%</td><td>강세, 차익매물 주의</td></tr>
+    <tr><td>+20%+</td><td>0개</td><td>0.0%</td><td>⚠️ 과열 주의</td></tr>
+  </tbody>
+</table>
+
+<div class="info-box">
+  <p>💡 <strong>핵심 인사이트</strong>: 종가베팅 후보의 <strong>약 74.7%가 +5% 미만 상승 종목</strong>이며, 이들은 기존 분석에서 완전히 누락되었습니다.</p>
+</div>
+
+<hr>
+
+<!-- ==================== 최종 추천 ==================== -->
+<h2>🎯 최종 종가베팅 추천</h2>
+
+<h3>🟢 A등급 — 강력 추천 (20점 이상, 1개)</h3>
+<table>
+  <thead>
+    <tr><th>순위</th><th>종목</th><th>상승률</th><th>종/고</th><th>핵심 이유</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="text-bold">1</td><td class="text-bold">BNK금융지주</td><td class="text-green">+3.9%</td><td class="text-gold">99.8%</td><td>종가≈고가 최강+연속매수752회</td></tr>
+  </tbody>
+</table>
+
+<h3>🟡 B등급 — 조건부 추천 (17~19점, 8개)</h3>
+<table>
+  <thead>
+    <tr><th>종목</th><th>상승률</th><th>종/고</th><th>유형</th><th>조건</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="text-bold">포스코인터내셔널 (047050) </td><td class="text-green">+6.3%</td><td class="">97.3%</td><td>강세목록</td><td>970틱 활발</td></tr>
+    <tr><td class="text-bold">싸이맥스 (160980) </td><td class="text-green">+8.2%</td><td class="">97.0%</td><td>강세목록</td><td>363틱 활발</td></tr>
+    <tr><td class="text-bold">CJ ENM (035760) <span class="badge badge-new">🆕</span></td><td class="text-green">+4.1%</td><td class="text-gold">100.0%</td><td>신규발견</td><td>시초가 확인 후 진입</td></tr>
+    <tr><td class="text-bold">삼성중공업 (010140) <span class="badge badge-new">🆕</span></td><td class="text-green">+0.4%</td><td class="text-gold">100.0%</td><td>신규발견</td><td>시초가 확인 후 진입</td></tr>
+    <tr><td class="text-bold">젬백스 (082270) </td><td class="text-green">+5.3%</td><td class="text-gold">99.9%</td><td>강세목록</td><td>종가≈고가</td></tr>
+    <tr><td class="text-bold">이엔에프테크놀로지 (102710) </td><td class="text-green">+6.6%</td><td class="text-gold">99.7%</td><td>강세목록</td><td>종가≈고가</td></tr>
+    <tr><td class="text-bold">코리아써키트 (007810) <span class="badge badge-new">🆕</span></td><td class="text-green">+3.6%</td><td class="text-gold">99.7%</td><td>신규발견</td><td>시초가 확인 후 진입</td></tr>
+    <tr><td class="text-bold">제일기획 (030000) <span class="badge badge-new">🆕</span></td><td class="text-green">+0.5%</td><td class="text-gold">99.5%</td><td>신규발견</td><td>시초가 확인 후 진입</td></tr>
+  </tbody>
+</table>
+
+<h3>🔵 C등급 — 숨은 보석 (신규 발견 중 주목, 5개)</h3>
+<table>
+  <thead>
+    <tr><th>종목</th><th>상승률</th><th>종/고</th><th>핵심 시그널</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="text-bold">BNK금융지주 (138930) <span class="badge badge-new">🆕</span></td><td class="text-green">+3.9%</td><td><span class="text-gold">99.8%</span></td><td>종/고99.8%</td></tr>
+    <tr><td class="text-bold">CJ ENM (035760) <span class="badge badge-new">🆕</span></td><td class="text-green">+4.1%</td><td><span style="color:#ff6b35; font-weight:700;">100%</span></td><td>종가=고가</td></tr>
+    <tr><td class="text-bold">삼성중공업 (010140) <span class="badge badge-new">🆕</span></td><td class="text-green">+0.4%</td><td><span style="color:#ff6b35; font-weight:700;">100%</span></td><td>종가=고가</td></tr>
+    <tr><td class="text-bold">코리아써키트 (007810) <span class="badge badge-new">🆕</span></td><td class="text-green">+3.6%</td><td><span class="text-gold">99.7%</span></td><td>종/고99.7%+오후5.0배</td></tr>
+    <tr><td class="text-bold">제일기획 (030000) <span class="badge badge-new">🆕</span></td><td class="text-green">+0.5%</td><td><span class="text-gold">99.5%</span></td><td>종/고99.5%</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- ==================== 기존 vs 전체 비교 ==================== -->
+<h2>💡 기존 분석 vs 전체 분석 비교</h2>
+
+<table>
+  <thead>
+    <tr><th>비교 항목</th><th>기존 (5%+만)</th><th>전체 유니버스</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1위 종목</td><td>BNK금융지주 (점수 18점)</td><td class="text-bold">BNK금융지주 (20점)</td></tr>
+    <tr><td>최고 종/고 비율</td><td>100.0% (삼영무역)</td><td class="text-bold">100.0% (CJ ENM)</td></tr>
+    <tr><td>최고 이상점수</td><td>10.1 (에코프로머티)</td><td class="text-bold">10.4 (우리기술)</td></tr>
+    <tr><td>숨은 보석 발견</td><td class="text-red">❌ 없음</td><td class="text-green">✅ 59개 발견</td></tr>
+  </tbody>
+</table>
+
+<div class="info-box success">
+  <p><strong>🎯 결론</strong></p>
+  <p>기존 분석(5% 이상만)에서는 <strong>59개의 우수한 종가베팅 후보</strong>를 완전히 놓쳤습니다.<br>
+  특히 종가/고가 비율이 99% 이상이면서 이상점수가 9점 이상인 종목들은 내일 갭상승 가능성이 높습니다.</p>
+</div>
+
+<div class="footer">
+  <p>📊 종가베팅 후보 분석 리포트</p>
+  <p>생성 시각: 2026-02-12 15:35:26</p>
+</div>
+
+</body>
+</html>
