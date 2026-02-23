@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📊 2026년 02월 23일 종가베팅 후보 분석</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', 'Malgun Gothic', '맑은 고딕', sans-serif;
+      background: #0f1923;
+      color: #e0e6ed;
+      line-height: 1.7;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.8em;
+      color: #fff;
+      border-bottom: 3px solid #ff6b35;
+      padding-bottom: 12px;
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 1.4em;
+      color: #4fc3f7;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      padding-left: 10px;
+      border-left: 4px solid #4fc3f7;
+    }
+    h3 {
+      font-size: 1.15em;
+      color: #ffd54f;
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      color: #90a4ae;
+      font-size: 0.9em;
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+    .subtitle strong { color: #b0bec5; }
+
+    /* Cards */
+    .card {
+      background: #1a2734;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      border: 1px solid #263545;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: #4fc3f7; }
+    .card-title {
+      font-size: 1.2em;
+      color: #fff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .card-title .rank {
+      background: linear-gradient(135deg, #ff6b35, #ff8f65);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.85em;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .card-title .score {
+      background: #263545;
+      color: #4fc3f7;
+      font-size: 0.85em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+    .card-title .new-tag {
+      background: #e91e63;
+      color: #fff;
+      font-size: 0.7em;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    /* Metric grid inside cards */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .metric-item {
+      background: #0f1923;
+      border-radius: 8px;
+      padding: 10px 14px;
+      text-align: center;
+    }
+    .metric-item .label {
+      font-size: 0.75em;
+      color: #78909c;
+      margin-bottom: 4px;
+    }
+    .metric-item .value {
+      font-size: 1.1em;
+      font-weight: 700;
+    }
+    .metric-item .value.green { color: #66bb6a; }
+    .metric-item .value.red { color: #ef5350; }
+    .metric-item .value.gold { color: #ffd54f; }
+    .metric-item .value.blue { color: #4fc3f7; }
+    .metric-item .check { color: #66bb6a; font-size: 0.8em; }
+
+    .reason {
+      color: #b0bec5;
+      font-size: 0.9em;
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: #0f1923;
+      border-radius: 8px;
+      border-left: 3px solid #4fc3f7;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px;
+      font-size: 0.9em;
+      table-layout: auto;
+    }
+    thead th {
+      background: #1a2734;
+      color: #4fc3f7;
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 2px solid #37474f;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #1e2d3d;
+    }
+    tbody tr:hover { background: #1a2734; }
+    tbody tr:nth-child(even) { background: rgba(26, 39, 52, 0.4); }
+    .text-green { color: #66bb6a; }
+    .text-red { color: #ef5350; }
+    .text-gold { color: #ffd54f; font-weight: 700; }
+    .text-blue { color: #4fc3f7; }
+    .text-bold { font-weight: 700; color: #fff; }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.85em;
+      font-weight: 600;
+    }
+    .badge-fire { background: #ff6b35; color: #fff; }
+    .badge-new { background: #e91e63; color: #fff; }
+    .badge-a { background: #2e7d32; color: #fff; }
+
+    /* Info box */
+    .info-box {
+      background: linear-gradient(135deg, #1a237e, #283593);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin: 16px 0;
+      border: 1px solid #3949ab;
+    }
+    .info-box.success {
+      background: linear-gradient(135deg, #1b3a1b, #2e5a2e);
+      border-color: #2e7d32;
+    }
+    .info-box p { margin: 4px 0; }
+    .info-box strong { color: #fff; }
+
+    .info-box ul {
+      margin: 8px 0 0 20px;
+      color: #b0bec5;
+    }
+    .info-box li { margin: 4px 0; }
+
+    /* Distribution bar */
+    .dist-bar {
+      display: flex;
+      height: 50px;
+      margin: 16px 0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .dist-bar > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.85em;
+      font-weight: 600;
+      text-align: center;
+      padding: 4px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #263545;
+      margin: 30px 0;
+    }
+
+    .footer {
+      text-align: center;
+      color: #546e7a;
+      font-size: 0.85em;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #263545;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 12px; }
+      h1 { font-size: 1.5em; }
+      h2 { font-size: 1.2em; }
+      .card { padding: 14px 12px; border-radius: 10px; }
+      .card-title { font-size: 1em; gap: 6px; }
+      .card-title .rank, .card-title .score { font-size: 0.75em; padding: 3px 8px; }
+      .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .metric-item { padding: 8px 8px; }
+      .metric-item .value { font-size: 0.98em; }
+      .dist-bar > div { font-size: 0.72em; line-height: 1.25; }
+      table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 0.8em;
+        white-space: nowrap;
+      }
+      thead, tbody, tr { white-space: nowrap; }
+      th, td { min-width: 90px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>📊 2026년 02월 23일 종가베팅 후보 분석</h1>
+
+<div class="subtitle">
+  <strong>분석 대상</strong>: 전체 986개 종목 중 <strong>49개</strong> 선정 (v2 기준: 최소 13점, 필수 필터 적용)<br>
+  <strong>생성 시각</strong>: 2026-02-23 15:35:24
+</div>
+
+
+
+<hr>
+
+<!-- ==================== 체크리스트 ==================== -->
+<h2>📋 종가베팅 v2 점수 기준 (최대 26점, 감점 포함)</h2>
+
+<div class="info-box">
+  <p>💡 <strong>v2 변경점</strong>: 양봉/상승률 판정을 시가 기준으로 수정, 과열 감점(-2), 음봉 감점(-2), 오후 약세 감점(-1) 도입. 기존 중복 항목(⑩ 오후가격추세) 제거.</p>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th><th>체크 항목</th><th>핵심 기준</th><th>배점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>①</td><td>양봉 마감</td><td class="text-gold">양봉(종가&gt;시가)=<span class="text-green">+2</span> / 음봉=<span class="text-red">-2</span></td><td>+2~-2</td></tr>
+    <tr><td>②</td><td class="text-bold">종가/고가 비율</td><td class="text-gold">99.5%+=5 / 99%+=4 / 97%+=3 / 95%+=2 / 92%+=1</td><td class="text-gold">+5</td></tr>
+    <tr><td>③</td><td>등락률(시가기준)</td><td>2~10%=<span class="text-green">+3</span> / 0.5~2%=+2 / 10~15%=+1 / <span class="text-red">15%+=−2(과열)</span></td><td>+3~-2</td></tr>
+    <tr><td>④</td><td>거래량(틱)</td><td>5000+=3 / 1000+=2 / 300+=1</td><td>+3</td></tr>
+    <tr><td>⑤</td><td class="text-bold">오후/오전 비율</td><td class="text-gold">3배+=<span class="text-green">+4</span> / 2배+=3 / 1배+=2 / 0.5배+=1 / <span class="text-red">&lt;0.5=−1</span></td><td class="text-gold">+4~-1</td></tr>
+    <tr><td>⑥</td><td>14시 이후 활동</td><td>300틱+=2 / 100틱+=1</td><td>+2</td></tr>
+    <tr><td>⑦</td><td>이상 점수</td><td>9.5+=3 / 8.5+=2 / 7.5+=1</td><td>+3</td></tr>
+    <tr><td>⑧</td><td>연속 매수</td><td>100회+=2 / 30회+=1</td><td>+2</td></tr>
+    <tr><td>⑨</td><td>자금 흐름</td><td>1억+=3 / 5천만+=2 / 1천만+=1</td><td>+3</td></tr>
+  </tbody>
+</table>
+
+<div class="info-box success">
+  <p>🎯 <strong>필수 조건</strong> (미충족 시 후보 제외):</p>
+  <ul>
+    <li>종가/고가 비율 ≥ 92%</li>
+    <li>최소 틱 수 ≥ 50</li>
+    <li>상한가(+29%) 제외 (다음날 매수 불가)</li>
+    <li>하락 종목(-3% 이하) 제외</li>
+    <li>최소 점수 ≥ 13점</li>
+  </ul>
+</div>
+
+<hr>
+
+<!-- ==================== TOP 6 ==================== -->
+<h2>🏆 종가베팅 TOP 6 추천 후보</h2>
+
+<div class="info-box success">
+  <p>💡 <strong>선정 기준</strong>: 전체 종목에서 점수와 패턴이 가장 우수한 상위 6개를 선정합니다.</p>
+</div>
+
+<!-- 1위 에이프릴바이오 -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">1위</span>
+    <span>에이프릴바이오 (397030)</span>
+    <span class="score">19점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+7.3%</div>
+      <div class="check">✅ 적정 강세</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value gold">99.5%</div>
+      <div class="check">✅ 우수</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">1,120건</div>
+      <div class="check">✅ 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value green">1.8배</div>
+      <div class="check">✅ 오후 우세</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value" style="color:#ffd54f;">9.4</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value" style="color:#ff6b35;">685회</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">715틱</div>
+      <div class="check">✅ 매우 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">73,200원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 종가/고가 99.5%로 우수. 오후 매수세 1.8배. 이상 점수 9.4로 높은 수준. 연속 매수 685회로 강한 매수 의지. +7.3% 상승이면서 끝까지 밀리지 않음 = 강한 매수 의지. 14시 이후 715틱으로 장 마감까지 활발한 매수.
+  </div>
+</div>
+
+<!-- 2위 지투파워 -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">2위</span>
+    <span>지투파워 (388050)</span>
+    <span class="score">17점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+4.0%</div>
+      <div class="check">✅ 적정</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value gold">98.2%</div>
+      <div class="check">✅ 우수</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">153건</div>
+      <div class="check">✅ 양호</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value" style="color:#ff6b35;">29.6배 🔥</div>
+      <div class="check">✅ 오후 매수 폭발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value green">8.7</div>
+      <div class="check">✅ 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value" style="color:#ff6b35;">7822회</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">148틱</div>
+      <div class="check">✅ 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">11,650원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 종가/고가 98.2%로 우수. 오후/오전 비율 29.6배로 <strong>오후 매수 폭발</strong> 🔥. 이상 점수 8.7. 연속 매수 7822회로 강한 매수 의지. +4.0% 적정 상승. 14시 이후 148틱으로 활발.
+  </div>
+</div>
+
+<!-- 3위 우진엔텍 -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">3위</span>
+    <span>우진엔텍 (457550)</span>
+    <span class="score">17점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+4.3%</div>
+      <div class="check">✅ 적정</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value">95.1%</div>
+      <div class="check">✅ 양호</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">1,377건</div>
+      <div class="check">✅ 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value green">1.6배</div>
+      <div class="check">✅ 오후 우세</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value" style="color:#ffd54f;">9.2</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value" style="color:#ff6b35;">12698회</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">854틱</div>
+      <div class="check">✅ 매우 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">31,700원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 오후 매수세 1.6배. 이상 점수 9.2로 높은 수준. 연속 매수 12698회로 강한 매수 의지. +4.3% 적정 상승. 14시 이후 854틱으로 장 마감까지 활발한 매수.
+  </div>
+</div>
+
+<!-- 4위 나노엔텍 -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">4위</span>
+    <span>나노엔텍 (039860)</span>
+    <span class="score">16점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+27.8%</div>
+      <div class="check">✅ 강세</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value" style="color:gold; font-size:1.1em;">100.0% 🔥</div>
+      <div class="check">✅ 종가=고가!</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">504건</div>
+      <div class="check">✅ 양호</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value" style="color:#ff6b35;">99.0배 🔥</div>
+      <div class="check">✅ 오후 매수 폭발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value" style="color:#ffd54f;">9.1</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value" style="color:#ff6b35;">12873회</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">504틱</div>
+      <div class="check">✅ 매우 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">5,900원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 종가가 고가와 <strong>100% 일치</strong> 🔥. 오후/오전 비율 99.0배로 <strong>오후 매수 폭발</strong> 🔥. 이상 점수 9.1로 높은 수준. 연속 매수 12873회로 강한 매수 의지. +27.8% 강세 상승. 14시 이후 504틱으로 장 마감까지 활발한 매수.
+  </div>
+</div>
+
+<!-- 5위 카카오 -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">5위</span>
+    <span>카카오 (035720)</span>
+    <span class="score">16점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+0.2%</div>
+      <div class="check">✅ 소폭</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value gold">99.5%</div>
+      <div class="check">✅ 우수</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">1,714건</div>
+      <div class="check">✅ 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value blue">0.6배</div>
+      <div class="check">✅ 정상</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value green">8.5</div>
+      <div class="check">✅ 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value green">121회</div>
+      <div class="check">✅ 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">657틱</div>
+      <div class="check">✅ 매우 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">58,100원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 종가/고가 99.5%로 우수. 이상 점수 8.5. 연속 매수 121회. +0.2% 소폭 상승이지만 패턴 우수. 14시 이후 657틱으로 장 마감까지 활발한 매수.
+  </div>
+</div>
+
+<!-- 6위 HMM -->
+<div class="card">
+  <div class="card-title">
+    <span class="rank">6위</span>
+    <span>HMM (011200)</span>
+    <span class="score">16점</span>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-item">
+      <div class="label">상승률</div>
+      <div class="value green">+1.1%</div>
+      <div class="check">✅ 소폭</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가/고가</div>
+      <div class="value gold">99.1%</div>
+      <div class="check">✅ 우수</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">거래 틱</div>
+      <div class="value blue">333건</div>
+      <div class="check">✅ 양호</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">오후/오전</div>
+      <div class="value" style="color:#ff6b35;">4.0배</div>
+      <div class="check">✅ 오후 매수 집중</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">이상 점수</div>
+      <div class="value" style="color:#ffd54f;">9.1</div>
+      <div class="check">✅ 매우 강함</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">연속 매수</div>
+      <div class="value blue">25회</div>
+      <div class="check">✅ 정상</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">14시 이후</div>
+      <div class="value blue">267틱</div>
+      <div class="check">✅ 활발</div>
+    </div>
+    <div class="metric-item">
+      <div class="label">종가</div>
+      <div class="value blue">22,950원</div>
+      <div class="check"></div>
+    </div>
+  </div>
+  <div class="reason">
+📌 종가/고가 99.1%로 우수. 오후/오전 비율 4.0배로 오후 매수 집중. 이상 점수 9.1로 높은 수준. +1.1% 소폭 상승이지만 패턴 우수. 14시 이후 267틱으로 활발.
+  </div>
+</div>
+
+<hr>
+
+<!-- ==================== 새로 발견된 종목 ==================== -->
+<h2>🌟 새로 발견된 종목 TOP 10 (기존 분석에서 빠졌던 숨은 종목)</h2>
+
+<div class="info-box">
+  <p>💡 이 종목들은 상승률이 0~5%로 기존 분석에서 <strong>완전히 제외</strong>되었지만,<br>
+  종가베팅 핵심 지표(종가/고가, 오후매수, 이상점수)가 매우 우수한 종목입니다.</p>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>순위</th><th>종목</th><th>상승률</th><th>종가/고가</th><th>점수</th><th>핵심 포인트</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="badge badge-fire">1 🔥</span></td>
+      <td class="text-bold">지투파워 (388050)</td>
+      <td class="text-green">+4.0%</td>
+      <td>98.2%</td>
+      <td>17점</td>
+      <td>오후 29.6배 🔥</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-fire">2 🔥</span></td>
+      <td class="text-bold">카카오 (035720)</td>
+      <td class="text-green">+0.2%</td>
+      <td>99.5%</td>
+      <td>16점</td>
+      <td>14시후 657틱</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-new">3</span></td>
+      <td class="text-bold">HMM (011200)</td>
+      <td class="text-green">+1.1%</td>
+      <td>99.1%</td>
+      <td>16점</td>
+      <td>이상점수 9.1, 오후 4.0배</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-new">4</span></td>
+      <td class="text-bold">한국컴퓨터 (054040)</td>
+      <td class="text-green">+4.7%</td>
+      <td>98.7%</td>
+      <td>16점</td>
+      <td>이상점수 9.0, 오후 5.8배 🔥</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-new">5</span></td>
+      <td class="text-bold">대한항공 (003490)</td>
+      <td class="text-green">+2.3%</td>
+      <td>98.5%</td>
+      <td>16점</td>
+      <td>이상점수 <strong style="color:#ff6b35;">10.1</strong>, 14시후 951틱</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td class="text-bold">한세실업 (105630)</td>
+      <td class="text-green">+4.5%</td>
+      <td>97.8%</td>
+      <td>15점</td>
+      <td>15점</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Detail explanations -->
+<div class="card" style="border-color: #e91e63;">
+  <h3 style="margin-top:0;">🔍 왜 이 종목들이 주목할 만한가?</h3>
+
+  <p style="margin-top:14px;"><strong style="color:#ffd54f;">지투파워 (+4.0%, 17점)</strong> — "겨우 4.0% 올랐을 뿐인데?"</p>
+  <ul style="margin: 8px 0 16px 20px; color:#b0bec5;">
+    <li>종가/고가 98.2% = 장중 최고가 근처로 마감</li>
+    <li>이상점수 8.7</li>
+    <li>14시 이후 148틱 = 장 마감 매수 활동</li>
+    <li>해석: <em>"큰 손이 장 후반에 조용히 매집하고 있다"</em></li>
+  </ul>
+
+  <p><strong style="color:#ffd54f;">카카오 (+0.2%, 16점)</strong></p>
+  <ul style="margin: 8px 0 16px 20px; color:#b0bec5;">
+    <li>종가/고가 99.5% = 고가 근처 마감</li>
+    <li>오후/오전 0.6배 → 오후에 매수가 집중</li>
+    <li>+0.2%는 작아 보이지만, 이런 패턴은 <strong style="color:#66bb6a;">내일 본격 상승 시작</strong> 신호일 수 있음</li>
+  </ul>
+
+  <p><strong style="color:#ffd54f;">HMM (+1.1%, 16점)</strong></p>
+  <ul style="margin: 8px 0 0 20px; color:#b0bec5;">
+    <li>종가/고가 99.1% + 이상점수 9.1 + 오후/오전 4.0배</li>
+    <li>장 마감 직전까지 매수가 오전의 4.0배 집중</li>
+  </ul>
+</div>
+
+<hr>
+
+<!-- ==================== 상승률 분포 ==================== -->
+<h2>📊 상승률 구간별 종가베팅 후보 분포</h2>
+
+<div class="dist-bar">
+  <div style="width:26.5%; background:#1565c0;" title="+0~2%: 13개">0~2%<br>13개</div>
+  <div style="width:42.9%; background:#2e7d32;" title="+2~5%: 21개">2~5%<br>21개</div>
+  <div style="width:20.4%; background:#e65100;" title="+5~10%: 10개">5~10%<br>10개</div>
+  <div style="width:4.1%; background:#bf360c;" title="+10~20%: 2개">10~20%<br>2개</div>
+  <div style="width:6.1%; background:#880e4f;" title="+20%+: 3개">20%+<br>3개</div>
+</div>
+
+<table>
+  <thead>
+    <tr><th>상승률 구간</th><th>종목 수</th><th>비율</th><th>특징</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>+0~2%</td><td>13개</td><td>26.5%</td><td><span class="badge badge-fire">🔥 새로 발견!</span> 소폭이지만 패턴 우수</td></tr>
+    <tr><td>+2~5%</td><td>21개</td><td>42.9%</td><td>안정적, 갭업 기대</td></tr>
+    <tr><td class="text-bold">+5~10%</td><td class="text-bold">10개</td><td class="text-bold">20.4%</td><td><span class="badge badge-a">✅ 최적 구간</span></td></tr>
+    <tr><td>+10~20%</td><td>2개</td><td>4.1%</td><td>강세, 차익매물 주의</td></tr>
+    <tr><td>+20%+</td><td>3개</td><td>6.1%</td><td>⚠️ 과열 주의</td></tr>
+  </tbody>
+</table>
+
+<div class="info-box">
+  <p>💡 <strong>핵심 인사이트</strong>: 종가베팅 후보의 <strong>약 69.4%가 +5% 미만 상승 종목</strong>이며, 이들은 기존 분석에서 완전히 누락되었습니다.</p>
+</div>
+
+<hr>
+
+<!-- ==================== 최종 추천 ==================== -->
+<h2>🎯 최종 종가베팅 추천</h2>
+
+<h3>🟢 A등급 — 강력 추천 (20점 이상, 0개)</h3>
+<table>
+  <thead>
+    <tr><th>순위</th><th>종목</th><th>상승률</th><th>종/고</th><th>핵심 이유</th></tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>🟡 B등급 — 조건부 추천 (17~19점, 3개)</h3>
+<table>
+  <thead>
+    <tr><th>종목</th><th>상승률</th><th>종/고</th><th>유형</th><th>조건</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="text-bold">에이프릴바이오 (397030) </td><td class="text-green">+7.3%</td><td class="text-gold">99.5%</td><td>강세목록</td><td>종가≈고가</td></tr>
+    <tr><td class="text-bold">지투파워 (388050) <span class="badge badge-new">🆕</span></td><td class="text-green">+4.0%</td><td class="">98.2%</td><td>신규발견</td><td>시초가 확인 후 진입</td></tr>
+    <tr><td class="text-bold">우진엔텍 (457550) <span class="badge badge-new">🆕</span></td><td class="text-green">+4.3%</td><td class="">95.1%</td><td>신규발견</td><td>시초가 확인 후 진입</td></tr>
+  </tbody>
+</table>
+
+<h3>🔵 C등급 — 숨은 보석 (신규 발견 중 주목, 3개)</h3>
+<table>
+  <thead>
+    <tr><th>종목</th><th>상승률</th><th>종/고</th><th>핵심 시그널</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="text-bold">카카오 (035720) <span class="badge badge-new">🆕</span></td><td class="text-green">+0.2%</td><td>99.5%</td><td>16점</td></tr>
+    <tr><td class="text-bold">HMM (011200) <span class="badge badge-new">🆕</span></td><td class="text-green">+1.1%</td><td>99.1%</td><td>16점</td></tr>
+    <tr><td class="text-bold">대한항공 (003490) <span class="badge badge-new">🆕</span></td><td class="text-green">+2.3%</td><td>98.5%</td><td>+이상<strong style="color:#ff6b35;">10.1</strong></td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- ==================== 기존 vs 전체 비교 ==================== -->
+<h2>💡 기존 분석 vs 전체 분석 비교</h2>
+
+<table>
+  <thead>
+    <tr><th>비교 항목</th><th>기존 (5%+만)</th><th>전체 유니버스</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1위 종목</td><td>에이프릴바이오 (점수 19점)</td><td class="text-bold">에이프릴바이오 (19점)</td></tr>
+    <tr><td>최고 종/고 비율</td><td>100.0% (나노엔텍)</td><td class="text-bold">100.0% (나노엔텍)</td></tr>
+    <tr><td>최고 이상점수</td><td>10.3 (대한광통신)</td><td class="text-bold">10.3 (대한광통신)</td></tr>
+    <tr><td>숨은 보석 발견</td><td class="text-red">❌ 없음</td><td class="text-green">✅ 34개 발견</td></tr>
+  </tbody>
+</table>
+
+<div class="info-box success">
+  <p><strong>🎯 결론</strong></p>
+  <p>기존 분석(5% 이상만)에서는 <strong>34개의 우수한 종가베팅 후보</strong>를 완전히 놓쳤습니다.<br>
+  특히 종가/고가 비율이 99% 이상이면서 이상점수가 9점 이상인 종목들은 내일 갭상승 가능성이 높습니다.</p>
+</div>
+
+<div class="footer">
+  <p>📊 종가베팅 후보 분석 리포트</p>
+  <p>생성 시각: 2026-02-23 15:35:24</p>
+</div>
+
+</body>
+</html>
